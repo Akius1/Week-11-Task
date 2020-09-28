@@ -16,12 +16,13 @@ describe("Test for all Organizations", () => {
         })
             .set("Accept", "Application/json")
             .expect("Content-Type", /json/)
-            .end(function (err, res) {
+            .end(async function (err, res) {
             if (err)
                 return done(err);
-            expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.organizations.length).toEqual(16);
-            done();
+            const datas = await res.body;
+            expect(datas).toBeInstanceOf(Object);
+            expect(datas.data.organizations.length).toEqual(16);
+            await done();
         });
     });
     it("Returns organizations with organization", (done) => {
