@@ -27,15 +27,21 @@ app.use("/graphql", express_graphql_1.graphqlHTTP(async (req) => ({
     graphiql: true,
 })));
 //app.use("/users", usersRouter);
-mongoose_1.default.set("useFindAndModify", false);
-mongoose_1.default
-    .connect("mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((res) => {
-    console.log("connected");
-})
-    .catch((err) => {
-    console.log(err);
-});
+async function connectTocluster() {
+    await mongoose_1.default
+        .connect("mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    })
+        .then((res) => {
+        console.log("connected");
+    })
+        .catch((err) => {
+        console.log(err);
+    });
+}
+connectTocluster();
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(http_errors_1.default(404));

@@ -31,19 +31,25 @@ app.use(
 );
 
 //app.use("/users", usersRouter);
+async function connectTocluster() {
+  await mongoose
+    .connect(
+      "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      }
+    )
+    .then((res) => {
+      console.log("connected");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
-mongoose.set("useFindAndModify", false);
-mongoose
-  .connect(
-    "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
-  .then((res) => {
-    console.log("connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+connectTocluster();
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
