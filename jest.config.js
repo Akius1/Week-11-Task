@@ -4,5 +4,6 @@ module.exports = {
   // moduleNameMapper: {
   //   "@exmpl/(.*)": "<rootDir>/src/$1",
   // },
+  setupFilesAfterEnv: ["./jest.setup.js"],
 };
 jest.setTimeout(30000);
