@@ -34,7 +34,8 @@ app.use(
 async function connectTocluster() {
   await mongoose
     .connect(
-      "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority",
+      //"mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority",
+      "mongodb://localhost/week11",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
