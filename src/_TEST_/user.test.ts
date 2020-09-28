@@ -12,12 +12,11 @@ describe("Test for all Organizations", () => {
       })
       .set("Accept", "Application/json")
       .expect("Content-Type", /json/)
-      .end(async function (err, res) {
-        if (err) return done(err);
+      .then(async (res) => {
         const datas = await res.body;
         expect(datas).toBeInstanceOf(Object);
         expect(datas.data.organizations.length).toEqual(16);
-        await done();
+        done();
       });
   });
 

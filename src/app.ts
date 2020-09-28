@@ -42,10 +42,10 @@ async function connectTocluster() {
       }
     )
     .then((res) => {
-      console.log("connected");
+      //console.log("connected");
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
     });
 }
 

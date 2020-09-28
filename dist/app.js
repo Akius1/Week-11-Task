@@ -35,10 +35,10 @@ async function connectTocluster() {
         useFindAndModify: false,
     })
         .then((res) => {
-        console.log("connected");
+        //console.log("connected");
     })
         .catch((err) => {
-        console.log(err);
+        //console.log(err);
     });
 }
 connectTocluster();
