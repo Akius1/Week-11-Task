@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const request = supertest(app);
 describe("Test for all Organizations", () => {
   it("Get all organizations", (done) => {
-    request
+    return request
       .post("/graphql")
       .send({
         query: "{organizations{organization, id, products}}",
@@ -14,8 +14,6 @@ describe("Test for all Organizations", () => {
       .expect("Content-Type", /json/)
       .end(function (err, res) {
         if (err) return done(err);
-        //console.log(res.body);
-
         expect(res.body).toBeInstanceOf(Object);
         expect(res.body.data.organizations.length).toEqual(16);
         done();
@@ -23,7 +21,7 @@ describe("Test for all Organizations", () => {
   });
 
   it("Returns organizations with organization", (done) => {
-    request
+    return request
       .post("/graphql")
       .send({
         query:
@@ -31,8 +29,6 @@ describe("Test for all Organizations", () => {
       })
       .expect(200)
       .end((err, res) => {
-        // res will contain array with one organizations
-        // console.log(res.body);
         if (err) return done(err);
         expect(res.body.data.getOneByID).toHaveProperty("organization");
         expect(res.body.data.getOneByID).toHaveProperty("ceo");
@@ -44,7 +40,7 @@ describe("Test for all Organizations", () => {
 
 describe("Test for all Users", () => {
   it("Get all users", (done) => {
-    request
+    return request
       .post("/graphql")
       .send({
         query: "{getUsers{firstName, lastName, email}}",
@@ -55,13 +51,12 @@ describe("Test for all Users", () => {
         if (err) return done(err);
         expect(res.body).toBeInstanceOf(Object);
         expect(res.body.data.getUsers.length).toEqual(10);
-        //console.log(res.body);
         done();
       });
   });
 
   it("Returns users by Id", (done) => {
-    request
+    return request
       .post("/graphql")
       .send({
         query:
@@ -69,8 +64,6 @@ describe("Test for all Users", () => {
       })
       .expect(200)
       .end((err, res) => {
-        // res will contain array with one organizations
-        //console.log(res.body);
         if (err) return done(err);
         expect(res.body.data.getAUserByID).toHaveProperty("email");
         expect(res.body.data.getAUserByID).toHaveProperty("firstName");
@@ -80,25 +73,24 @@ describe("Test for all Users", () => {
   });
 });
 
-describe("Test for Mutation", () => {
-  it("Add an organization", async (done) => {
-    request
-      .post("/graphql")
-      .send({
-        query:
-          'mutation {addOrganization(organization:"SkyBank",products: ["Transfer", "Withdrawal"],marketValue: 90,address: "Skybank Tower",ceo:"Mr Uche",country: "Nigeria",employees: ["JohnBosco", "Taiwo", "Shola"]){organization, products}}',
-      })
-      .set("Accept", "Application/json")
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .end(function (err, res) {
-        console.log("the res", res.body);
-        if (err) return done(err);
-        expect(res.body).toBeInstanceOf(Object);
-        done();
-      });
-  });
-});
+// describe("Test for Mutation", () => {
+//   it("Add an organization", async (done) => {
+//     return request
+//       .post("/graphql")
+//       .send({
+//         query:
+//           'mutation {addOrganization(organization:"Sky",products: ["Transfer", "Withdrawal"],marketValue: 90,address: "Skybank Tower",ceo:"Mr Uche",country: "Nigeria",employees: ["JohnBosco", "Taiwo", "Shola"]){organization, products}}',
+//       })
+//       .set("Accept", "Application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200)
+//       .end(function (err, res) {
+//         if (err) return done(err);
+//         expect(res.body).toBeInstanceOf(Object);
+//         done();
+//       });
+//   });
+// });
 
 afterAll((done) => {
   mongoose.connection.close();
