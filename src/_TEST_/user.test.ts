@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const request = supertest(app);
 
 beforeEach(() => {
-  jest.setTimeout(10000);
+  jest.setTimeout(30000);
 });
 
 describe("Test for all Organizations", () => {

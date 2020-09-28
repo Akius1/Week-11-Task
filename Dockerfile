@@ -10,6 +10,8 @@ COPY . /usr/app
 
 RUN yarn tsc
 
+RUN yarn test:unit
+
 EXPOSE 3000
 
 CMD ["yarn" ,"start"]
