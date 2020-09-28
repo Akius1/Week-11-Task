@@ -5,12 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = __importDefault(require("../app"));
-//import mongoose
-//  afterAll((done) => {
-//    // Closing the DB connection allows Jest to exit successfully.
-//    mongoose.connection.close();
-//    done();
-//  });
+const mongoose_1 = __importDefault(require("mongoose"));
 const request = supertest_1.default(app_1.default);
 describe("Test for all Organizations", () => {
     it("Get all organizations", (done) => {
@@ -104,4 +99,8 @@ describe("Test for Mutation", () => {
             done();
         });
     });
+});
+afterAll((done) => {
+    mongoose_1.default.connection.close();
+    done();
 });

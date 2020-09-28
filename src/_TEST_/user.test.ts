@@ -1,12 +1,7 @@
 import supertest from "supertest";
 import app from "../app";
-//import mongoose
+import mongoose from "mongoose";
 
-//  afterAll((done) => {
-//    // Closing the DB connection allows Jest to exit successfully.
-//    mongoose.connection.close();
-//    done();
-//  });
 const request = supertest(app);
 describe("Test for all Organizations", () => {
   it("Get all organizations", (done) => {
@@ -103,4 +98,9 @@ describe("Test for Mutation", () => {
         done();
       });
   });
+});
+
+afterAll((done) => {
+  mongoose.connection.close();
+  done();
 });
