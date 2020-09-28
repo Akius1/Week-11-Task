@@ -23,8 +23,8 @@ describe("Test for all Organizations", () => {
             done();
         });
     });
-    it("Returns organizations with organization", (done) => {
-        return request
+    it("Returns organizations with organization", async (done) => {
+        return await request
             .post("/graphql")
             .send({
             query: '{ getOneByID(id:"5f6754e2e3a6243fd89d36e9") { organization, ceo, marketValue} }',
@@ -40,9 +40,9 @@ describe("Test for all Organizations", () => {
         });
     });
 });
-describe("Test for all Users", () => {
+describe("Test for all Users", async () => {
     it("Get all users", (done) => {
-        return request
+        return await request
             .post("/graphql")
             .send({
             query: "{getUsers{firstName, lastName, email}}",
@@ -57,8 +57,8 @@ describe("Test for all Users", () => {
             done();
         });
     });
-    it("Returns users by Id", (done) => {
-        return request
+    it("Returns users by Id", async (done) => {
+        return await request
             .post("/graphql")
             .send({
             query: '{ getAUserByID(email:"ugoDav@gmail.com", password:"helloWorld") { email, firstName, lastName} }',
