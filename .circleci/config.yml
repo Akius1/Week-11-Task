@@ -17,6 +17,12 @@ jobs:
           app-dir: ~/WEEK-11-TASK
           cache-path: node_modules
           override-ci-command: yarn
+      # Save workspace for subsequent jobs (i.e. test)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
   test:
     docker:
       # The primary container is an instance of the first image listed. The job's commands run in this container.
@@ -25,6 +31,8 @@ jobs:
       - image: circleci/mongo:latest
     steps:
       # Reuse the workspace from the build job
+      - attach_workspace:
+          at: .
       - run:
           name: tsc
           command: yarn tsc
