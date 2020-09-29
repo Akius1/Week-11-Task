@@ -31,8 +31,6 @@ jobs:
       - image: circleci/mongo:latest
     steps:
       # Reuse the workspace from the build job
-      - attach_workspace:
-          at: .
       - run:
           name: tsc
           command: yarn tsc
