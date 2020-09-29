@@ -9,7 +9,7 @@ jobs:
       - image: circleci/mongo:4.2
 
     environment:
-      MONGO_URI: "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/test"
+      MONGO_URI: "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>"
 
     working_directory: ~/WEEK-11-TASK
 
