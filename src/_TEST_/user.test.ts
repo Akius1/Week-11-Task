@@ -78,24 +78,24 @@ describe("Test for all Users", () => {
   });
 });
 
-describe("Test for Mutation", () => {
-  it("Add an organization", (done) => {
-    return request
-      .post("/graphql")
-      .send({
-        query:
-          'mutation {addOrganization(organization:"Sky",products: ["Transfer", "Withdrawal"],marketValue: 90,address: "Skybank Tower",ceo:"Mr Uche",country: "Nigeria",employees: ["JohnBosco", "Taiwo", "Shola"]){organization, products}}',
-      })
-      .set("Accept", "Application/json")
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) return done(err);
-        expect(res.body).toBeInstanceOf(Object);
-        done();
-      });
-  });
-});
+// describe("Test for Mutation", () => {
+//   it("Add an organization", (done) => {
+//     return request
+//       .post("/graphql")
+//       .send({
+//         query:
+//           'mutation {addOrganization(organization:"Sky",products: ["Transfer", "Withdrawal"],marketValue: 90,address: "Skybank Tower",ceo:"Mr Uche",country: "Nigeria",employees: ["JohnBosco", "Taiwo", "Shola"]){organization, products}}',
+//       })
+//       .set("Accept", "Application/json")
+//       .expect("Content-Type", /json/)
+//       .expect(200)
+//       .end(function (err, res) {
+//         if (err) return done(err);
+//         expect(res.body).toBeInstanceOf(Object);
+//         done();
+//       });
+//   });
+// });
 
 afterAll((done) => {
   mongoose.connection.close();
