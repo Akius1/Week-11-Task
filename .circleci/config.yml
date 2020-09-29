@@ -7,7 +7,12 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:10
       - image: circleci/mongo:4.0.3
+
+    environment:
+      MONGO_URI: mongodb://localhost/database
+
     working_directory: ~/WEEK-11-TASK
+
     steps:
       - checkout
       # Download and cache dependencies

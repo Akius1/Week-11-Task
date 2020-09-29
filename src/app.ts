@@ -8,6 +8,7 @@ import { graphqlHTTP } from "express-graphql";
 import schema from "./schema/schema";
 import mongoose from "mongoose";
 import { verifyToken } from "./routes/index";
+import dotenv from "dotenv";
 
 var app = express();
 
@@ -33,20 +34,16 @@ app.use(
 //app.use("/users", usersRouter);
 async function connectTocluster() {
   await mongoose
-    .connect(
-      "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority",
-      //"mongodb://localhost/week11",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      }
-    )
+    .connect(process.env.MONGO_URI!, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    })
     .then((res) => {
-      //console.log("connected");
+      console.log("connected");
     })
     .catch((err) => {
-      //console.log(err);
+      console.log(err);
     });
 }
 
