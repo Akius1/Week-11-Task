@@ -25,7 +25,7 @@ jobs:
       # Run typescript
       - run: yarn tsc
       # run tests!
-      - run: yarn jest:unit
+      - run: yarn test:unit
 workflows:
   node-tests:
     jobs:
