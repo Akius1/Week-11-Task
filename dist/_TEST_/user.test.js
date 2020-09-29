@@ -8,7 +8,7 @@ const app_1 = __importDefault(require("../app"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const request = supertest_1.default(app_1.default);
 beforeEach(() => {
-    jest.setTimeout(30000);
+    jest.setTimeout(10000);
 });
 describe("Test for all Organizations", () => {
     it("Get all organizations", (done) => {
