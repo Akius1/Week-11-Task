@@ -5,8 +5,8 @@ jobs:
   NERT Server:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10
-      - image: circleci/mongo:4.0.3
+      - image: circleci/node:12
+      - image: circleci/mongo:4.2
 
     environment:
       MONGO_URI: "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority"
