@@ -28,19 +28,19 @@ jobs:
       # The primary container is an instance of the first image listed. The job's commands run in this container.
       - image: cimg/node:current
       # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.
-      - image: mongo:4.2
+      - image: circleci/mongo:4.2
     steps:
       # Reuse the workspace from the build job
       - attach_workspace:
           at: .
-      - run:
-          name: Demonstrate that Mongo DB is available as localhost
-          command: |
-            curl -sSJL https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
-            echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
-            sudo apt update
-            sudo apt install mongodb-org
-            mongo localhost --eval 'db.serverStatus()'
+      # - run:
+      #     name: Demonstrate that Mongo DB is available as localhost
+      #     command: |
+      #       curl -sSJL https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+      #       echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+      #       sudo apt update
+      #       sudo apt install mongodb-org
+      #       mongo localhost --eval 'db.serverStatus()'
       - run:
           name: tsc
           command: yarn tsc
