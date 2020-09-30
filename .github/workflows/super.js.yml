@@ -26,3 +26,5 @@ jobs:
       - run: yarn
       - run: yarn tsc
       - run: yarn test:unit
+    env:
+      MONGO_URI: "mongodb+srv://user_1:akius123@organizations.jkima.mongodb.net/<GraphQL>?retryWrites=true&w=majority"

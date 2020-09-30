@@ -24,7 +24,7 @@ describe("Test for all Organizations", () => {
       .then(async (res) => {
         const datas = await res.body;
         expect(datas).toBeInstanceOf(Object);
-        expect(datas.data.organizations.length).toEqual(16);
+        expect(datas.data.organizations.length).toEqual(17);
         done();
       });
   });
